@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Check if users is admin if he is admin he can edit and delet company  -->
+{% if user.is_superuser %}
+    <p>Hello, admin.</p>
+    <div class="card">
+      <a href="{% url 'menu:newcompany' %}"><button type="button" class="btn btn-outline-success btn btn-primary btn-lg">New Customer</button></a>
+    </div>
+
+    <div class="row">
+    {% for com in company %}
+
+      <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ com.name }}</h5>
+              <p class="card-text">{{ com.Descrption }}</p>
+              <a href="{{com.link}}" class="btn btn-primary">link</a>
+              <a href="#" class="btn btn-primary">Edite</a>
+              <a href="{{com.link}}" class="btn btn-primary">Delet</a>
+            </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+
+{% else %}
+    <p>Hello, ordinary visitor.</p>
+    <div class="row">
+    {% for com in company %}
+
+      <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ com.name }}</h5>
+              <p class="card-text">{{ com.Descrption }}</p>
+              <a href="{{com.link}}" class="btn btn-primary">link</a>
+            </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+{% endif %}
+
+
+{% endblock %}

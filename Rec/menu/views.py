@@ -9,6 +9,7 @@ from .forms import CompanyCreationForm
 
 def home(request):
     today = date.today()
+    # today = "2020-07-08"
     list = Food.objects.filter(day=today)
 
     # print(list)
@@ -45,6 +46,4 @@ def newcompany(request):
             return allcompany(request)
     else:
         new_company = CompanyCreationForm()
-    return render(request, 'menu\createCompany.html', {
-        'form': new_company
-    })
+    return render(request, 'menu\createCompany.html', {'form': new_company})
